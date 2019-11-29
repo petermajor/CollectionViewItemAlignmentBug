@@ -1,10 +1,7 @@
-﻿using System;
-namespace CollectionViewItemAlignmentBug
+﻿namespace CollectionViewItemAlignmentBug
 {
     public class ItemViewModel
     {
-        public ItemViewModel()
-        {
-        }
+        public string Display { get; set; }
     }
 }

@@ -65,6 +65,7 @@
     <None Include="Entitlements.plist" />
     <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="CollectionViewItemGridFixRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
@@ -120,8 +121,8 @@
     <Reference Include="System.Numerics.Vectors" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Xamarin.Forms" Version="4.2.0.709249" />
-    <PackageReference Include="Xamarin.Essentials" Version="1.2.0" />
+    <PackageReference Include="Xamarin.Forms" Version="4.3.0.991211" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.3.1" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>

@@ -1,7 +1,64 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:d="http://xamarin.com/schemas/2014/forms/design" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Class="CollectionViewItemAlignmentBug.MainPage">
-    <StackLayout>
-        <!-- Place new controls here -->
-        <Label Text="Welcome to Xamarin.Forms!" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
-    </StackLayout>
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:bug="clr-namespace:CollectionViewItemAlignmentBug"
+    x:Class="CollectionViewItemAlignmentBug.MainPage"
+    BackgroundColor="White">
+
+    <CollectionView
+        Margin="50"
+        SelectionMode="Single">
+
+        <CollectionView.ItemsLayout>
+            <LinearItemsLayout Orientation="Vertical" ItemSpacing="4"/>
+        </CollectionView.ItemsLayout>
+
+        <CollectionView.ItemsSource>
+            <x:Array Type="{x:Type bug:ItemViewModel}">
+                <bug:ItemViewModel Display="Item 1" />
+                <bug:ItemViewModel Display="This is item 2" />
+                <bug:ItemViewModel Display="I'm number 3" />
+            </x:Array>
+        </CollectionView.ItemsSource>
+
+        <CollectionView.ItemTemplate>
+            <DataTemplate
+                x:DataType="bug:ItemViewModel">
+                <Grid
+                    ColumnSpacing="0"
+                    BackgroundColor="{StaticResource ItemBackgroundColor}"
+                    HeightRequest="50">
+                    <VisualStateManager.VisualStateGroups>
+                        <VisualStateGroupList>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Selected">
+                                    <VisualState.Setters>
+                                        <Setter Property="BackgroundColor" Value="{StaticResource ItemAccentColor}" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateGroupList>
+                    </VisualStateManager.VisualStateGroups>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="10" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <BoxView
+                        Grid.Column="0"
+                        BackgroundColor="{StaticResource ItemAccentColor}"/>
+                    <Label
+                        Grid.Column="1"
+                        Text="{Binding Display}"
+                        VerticalTextAlignment="Center"
+                        LineBreakMode="TailTruncation"
+                        Margin="15,0,0,0"
+                        FontSize="18"
+                        TextColor="{StaticResource ItemTextColor}"/>
+                </Grid>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
 </ContentPage>
